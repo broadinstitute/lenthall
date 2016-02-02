@@ -13,7 +13,7 @@ object IntegerUtil {
 
   implicit class IntEnhanced(val value: Int) extends AnyVal {
     def toOrdinal: String = value match {
-      case v if v.isBetweenInclusive(10, 20) => s"${v}th"
+      case v if (v % 100).isBetweenInclusive(10, 20) => s"${v}th"
       case v =>
         val suffix = ordinal(v % 10)
         s"$v$suffix"
