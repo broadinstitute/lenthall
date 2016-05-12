@@ -1,5 +1,7 @@
 package lenthall.config
 
+import java.nio.file.Paths
+
 import com.typesafe.config.ConfigFactory
 import lenthall.config.ScalaConfig._
 import org.scalatest.{FlatSpec, Matchers}
@@ -23,6 +25,7 @@ class ScalaConfigSpec extends FlatSpec with Matchers {
   it should "return the config value as options when present" in {
     exampleConfig.getConfigOption("configVal") should be('defined)
     exampleConfig.getStringOption("stringVal") should be(Some("string"))
+    exampleConfig.getPathOption("stringVal") should be(Some(Paths.get("string")))
     exampleConfig.getBooleanOption("booleanVal") should be(Some(true))
     exampleConfig.getIntOption("intVal") should be(Some(123))
     exampleConfig.getLongOption("longVal") should be(Some(123L))
@@ -33,6 +36,7 @@ class ScalaConfigSpec extends FlatSpec with Matchers {
   it should "return the config as None when missing" in {
     exampleConfig.getConfigOption("missing") should be(None)
     exampleConfig.getStringOption("missing") should be(None)
+    exampleConfig.getPathOption("missing") should be(None)
     exampleConfig.getBooleanOption("missing") should be(None)
     exampleConfig.getIntOption("missing") should be(None)
     exampleConfig.getLongOption("missing") should be(None)

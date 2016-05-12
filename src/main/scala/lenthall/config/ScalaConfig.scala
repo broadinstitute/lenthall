@@ -1,5 +1,7 @@
 package lenthall.config
 
+import java.nio.file.{Path, Paths}
+
 import com.typesafe.config.{Config, ConfigException, ConfigFactory}
 
 import scala.util.{Failure, Success, Try}
@@ -8,6 +10,7 @@ object ScalaConfig {
   implicit class EnhancedScalaConfig(val config: Config) extends AnyVal {
     def getConfigOption(key: String): Option[Config] = getOption(key, config.getConfig)
     def getStringOption(key: String): Option[String] = getOption(key, config.getString)
+    def getPathOption(key: String): Option[Path] = getStringOption(key) map { Paths.get(_) }
     def getBooleanOption(key: String): Option[Boolean] = getOption(key, config.getBoolean)
     def getIntOption(key: String): Option[Int] = getOption(key, config.getInt)
     def getLongOption(key: String): Option[Long] = getOption(key, config.getLong)
