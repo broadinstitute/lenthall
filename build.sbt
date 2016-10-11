@@ -7,7 +7,7 @@ organization := "org.broadinstitute"
 scalaVersion := "2.11.8"
 
 // Upcoming release, or current if we're on the master branch
-git.baseVersion := "0.18"
+git.baseVersion := "0.19"
 
 // Shorten the git commit hash
 git.gitHeadCommit := git.gitHeadCommit.value map { _.take(7) }
@@ -21,11 +21,14 @@ val sprayV = "1.3.3"
 
 val akkaV = "2.4.10"
 
+resolvers += Resolver.jcenterRepo
+
 libraryDependencies ++= Seq(
   "com.typesafe" % "config" % "1.3.0",
   "org.slf4j" % "slf4j-api" % "1.7.21",
+  "com.iheart" %% "ficus" % "1.3.0",
   //---------- Provided libraries -------------------//
-  "org.scalaz" %% "scalaz-core" % "7.2.5" % Provided,
+  "org.typelevel" %% "cats" % "0.7.2" % Provided,
   "ch.qos.logback" % "logback-classic" % "1.1.7" % Provided,
   "org.webjars" % "swagger-ui" % "2.2.2" % Provided,
   "io.spray" %% "spray-routing" % sprayV % Provided,
