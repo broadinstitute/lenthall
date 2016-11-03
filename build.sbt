@@ -32,9 +32,9 @@ libraryDependencies ++= Seq(
   Exclude test framework cats-laws and its transitive dependency scalacheck.
   If sbt detects scalacheck, it tries to run it.
   Explicitly excluding the two problematic artifacts instead of including the three (or four?).
-  https://github.com/typelevel/cats/tree/v0.7.2#getting-started
+  https://github.com/typelevel/cats/tree/v0.8.0#getting-started
    */
-  "org.typelevel" %% "cats" % "0.7.2" % Provided
+  "org.typelevel" %% "cats" % "0.8.0" % Provided
     exclude("org.typelevel", "cats-laws_2.11")
     exclude("org.typelevel", "cats-kernel-laws_2.11"),
   "ch.qos.logback" % "logback-classic" % "1.1.7" % Provided,
