@@ -1,7 +1,10 @@
 package lenthall.validation
 
-import lenthall.validation.ErrorOr.ErrorOr
+import java.net.{URI, URL}
+
 import cats.syntax.validated._
+import lenthall.validation.ErrorOr.ErrorOr
+import net.ceedubs.ficus.readers.{StringReader, ValueReader}
 import org.slf4j.Logger
 
 import scala.util.{Failure, Success, Try}
@@ -13,6 +16,8 @@ object Validation {
       logger.warn(s"Unrecognized configuration key(s) for $context: ${unrecognizedKeys.mkString(", ")}")
     }
   }
+  
+  implicit val urlReader: ValueReader[URL] = StringReader.stringValueReader.map { URI.create(_).toURL }
   
   def validate[A](block: => A): ErrorOr[A] = Try(block) match {
     case Success(result) => result.validNel
