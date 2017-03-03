@@ -8,7 +8,7 @@ scalaVersion := "2.11.8"
 
 lazy val versionSettings = Seq(
   // Upcoming release, or current if we're on the master branch
-  git.baseVersion := "0.20",
+  git.baseVersion := "0.21",
 
   // Shorten the git commit hash
   git.gitHeadCommit := git.gitHeadCommit.value map { _.take(7) },
@@ -42,7 +42,7 @@ libraryDependencies ++= Seq(
   "org.typelevel" %% "cats" % "0.7.2" % Provided
     exclude("org.typelevel", "cats-laws_2.11")
     exclude("org.typelevel", "cats-kernel-laws_2.11"),
-  "ch.qos.logback" % "logback-classic" % "1.1.7" % Provided,
+  "ch.qos.logback" % "logback-classic" % "1.2.1" % Provided,
   "org.webjars" % "swagger-ui" % "2.2.2" % Provided,
   "io.spray" %% "spray-routing" % sprayV % Provided,
   "io.spray" %% "spray-http" % sprayV % Provided,
