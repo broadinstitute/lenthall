@@ -42,6 +42,7 @@ libraryDependencies ++= Seq(
     exclude("org.typelevel", "cats-kernel-laws_2.11"),
   "ch.qos.logback" % "logback-classic" % "1.2.1" % Provided,
   "com.typesafe.akka" %% "akka-actor" % akkaV % Provided,
+  "com.typesafe.akka" %% "akka-testkit" % akkaV % Test,
   "org.scalatest" %% "scalatest" % "3.0.1" % Test
 )
 
