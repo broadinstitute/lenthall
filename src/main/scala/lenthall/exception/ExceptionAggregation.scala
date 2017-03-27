@@ -17,7 +17,7 @@ object Aggregation {
   * When mixed in an Exception class,
   * aggregates multiple error messages into the getMessage method.
   */
-trait MessageAggregation extends Throwable {
+trait MessageAggregation extends Exception {
   def exceptionContext: String
   def errorMessages: Traversable[String]
 
