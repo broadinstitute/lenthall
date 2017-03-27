@@ -2,7 +2,10 @@ package lenthall.exception
 
 import java.io.FileNotFoundException
 import java.nio.file.NoSuchFileException
+
 import lenthall.exception.Aggregation._
+
+import scala.annotation.tailrec
 
 object Aggregation {
   def formatMessageWithList(message: String, list: Traversable[String]) = {
@@ -13,6 +16,7 @@ object Aggregation {
   }
 
   def flattenThrowable(throwable: Throwable) = {
+    @tailrec
     def flattenThrowableRec(toExpand: List[Throwable], flattened: List[Throwable]): List[Throwable] = toExpand match {
       case Nil => flattened
       case t :: r =>
