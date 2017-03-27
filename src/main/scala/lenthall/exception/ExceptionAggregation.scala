@@ -11,6 +11,23 @@ object Aggregation {
       s"$message:$messages"
     } else message
   }
+
+  def flattenThrowable(throwable: Throwable) = {
+    def flattenThrowableRec(toExpand: List[Throwable], flattened: List[Throwable]): List[Throwable] = toExpand match {
+      case Nil => flattened
+      case t :: r =>
+        t match {
+          case aggregated: AggregatedException => flattenThrowableRec(r ++ aggregated.throwables.toList, flattened)
+          case classic => flattenThrowableRec(r, flattened :+ classic)
+        }
+    }
+    
+    flattenThrowableRec(List(throwable), List.empty)
+  }
+  
+  implicit class EnhancedThrowable(val throwable: Throwable) extends AnyVal {
+    def flatten = flattenThrowable(throwable)
+  }
 }
 
 /**
