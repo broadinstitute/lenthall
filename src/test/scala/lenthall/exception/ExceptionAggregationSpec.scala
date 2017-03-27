@@ -83,12 +83,14 @@ class ExceptionAggregationSpec extends FlatSpecLike with Matchers{
   }
 
   "ThrowableAggregation" should "flatten throwables" in {
+    import Aggregation._
+    
     val exception1 = new RuntimeException("Nope")
     val exception2 = new RuntimeException("Still nope")
     val subAggregatedException = AggregatedException("Nope exception", List(exception1, exception2))
     val exception3 = new RuntimeException("Yep Exception")
     val aggregatedException = AggregatedException("This is why nothing works", List(subAggregatedException, exception3))
     
-    Aggregation.flattenThrowable(aggregatedException).toSet shouldBe Set(exception1, exception2, exception3)
+    aggregatedException.flatten.toSet shouldBe Set(exception1, exception2, exception3)
   }
 }
