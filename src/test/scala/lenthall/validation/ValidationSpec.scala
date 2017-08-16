@@ -66,8 +66,8 @@ class ValidationSpec extends FlatSpec with Matchers {
     val success = Success("yeah")
     val failure = Failure(new Exception(":("))
     import lenthall.validation.Validation._
-    success.toErroOr shouldBe Valid("yeah")
-    failure.toErroOr shouldBe Invalid(NonEmptyList.of(":("))
+    success.toErrorOr shouldBe Valid("yeah")
+    failure.toErrorOr shouldBe Invalid(NonEmptyList.of(":("))
   }
 
 }
