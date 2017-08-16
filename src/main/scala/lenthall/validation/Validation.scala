@@ -26,7 +26,7 @@ object Validation {
   }
 
   implicit class TryValidation[A](val t: Try[A]) extends AnyVal {
-    def toErroOr: ErrorOr[A] = {
+    def toErrorOr: ErrorOr[A] = {
       fromTry(t).leftMap(_.getMessage).toValidatedNel[String, A] 
     }
   }
