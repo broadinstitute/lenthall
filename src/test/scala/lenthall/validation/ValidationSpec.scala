@@ -70,4 +70,12 @@ class ValidationSpec extends FlatSpec with Matchers {
     failure.toErrorOr shouldBe Invalid(NonEmptyList.of(":("))
   }
 
+  it should "convert an Option to an ErrorOr" in {
+    val some = Some("Yeah")
+    val none = None
+    import lenthall.validation.Validation._
+    some.toErrorOr(":(") shouldBe Valid("Yeah")
+    none.toErrorOr(":(") shouldBe Invalid(NonEmptyList.of(":("))
+  }
+
 }
